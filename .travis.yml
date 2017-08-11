@@ -84,6 +84,24 @@ matrix:
     - addons: *gcc49
       compiler: gcc
       env: COMPILER_VERSION=4.9 BUILD_TYPE=Release
+      
+    # GCC 4.8
+    - addons: &gcc48
+        apt:
+          sources:
+            - george-edison55-precise-backports
+            - ubuntu-toolchain-r-test
+          packages:
+            - cmake
+            - cmake-data
+            - ninja-build
+            - g++-4.8
+      compiler: gcc
+      env: COMPILER_VERSION=4.8 BUILD_TYPE=Debug
+
+    - addons: *gcc48
+      compiler: gcc
+      env: COMPILER_VERSION=4.8 BUILD_TYPE=Release
 
 script:
   - mkdir build && cd build
